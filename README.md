@@ -18,3 +18,4 @@ To add some security to our application. A non-exhaustive list of things to do:
  - If I'm not a user's accepted follower, I can't see their posts (but I can visit their page, see their followers, and who they are following).
  - Only a user should be able to see their own Pending follow requests.
  - Is the application secure? Put on your [white hacker hat](https://en.wikipedia.org/wiki/White_hat_(computer_security)): can you think of any other attacks?
+Check
