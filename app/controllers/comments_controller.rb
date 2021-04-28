@@ -35,6 +35,7 @@ class CommentsController < ApplicationController
     end
   end
 
+  before_action :ensure_current_user_is_owner
   # PATCH/PUT /comments/1 or /comments/1.json
   def update
     respond_to do |format|
@@ -61,6 +62,12 @@ class CommentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
       @comment = Comment.find(params[:id])
+    end
+
+    def ensure_current_user_is_owner
+      if current_user != @comment.author
+        redirect_back fallback_location: root_url, alert: "You are not permitted to perform this action."
+      end
     end
 
     # Only allow a list of trusted parameters through.

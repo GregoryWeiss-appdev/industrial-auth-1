@@ -35,6 +35,7 @@ class PhotosController < ApplicationController
     end
   end
 
+  before_action :ensure_current_user_is_owner
   # PATCH/PUT /photos/1 or /photos/1.json
   def update
     respond_to do |format|
@@ -49,6 +50,7 @@ class PhotosController < ApplicationController
   end
 
   # DELETE /photos/1 or /photos/1.json
+  
   def destroy
     @photo.destroy
     respond_to do |format|
@@ -63,8 +65,14 @@ class PhotosController < ApplicationController
       @photo = Photo.find(params[:id])
     end
 
+    def ensure_current_user_is_owner
+      if current_user != @photo.owner
+        redirect_back fallback_location: root_url, alert: "You are not permitted to perform this action."
+      end
+    end
+
     # Only allow a list of trusted parameters through.
     def photo_params
-      params.require(:photo).permit(:image, :comments_count, :likes_count, :caption, :owner_id)
+      params.require(:photo).permit(:image, :comments_count, :likes_count, :caption)
     end
 end
