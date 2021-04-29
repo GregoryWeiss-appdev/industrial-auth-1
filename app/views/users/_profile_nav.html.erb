@@ -1,4 +1,4 @@
-<% if @user.followers.include? current_user %>
+<% if (@user.followers.include? current_user) || (@user.private == false) %>
   <ul class="nav nav-tabs nav-justified mb-1">    
     <li class="nav-item">
       <%=

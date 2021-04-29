@@ -10,7 +10,7 @@
     <%= render "users/profile_nav", user: @user %>
   </div>
 </div>
-<% if @user.followers.include? current_user %>
+<% if (@user.followers.include? current_user) || (@user.private == false) %>
   <% @user.own_photos.each do |photo| %>
     <div class="row mb-4">
       <div class="col-md-6 offset-md-3">
