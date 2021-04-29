@@ -35,7 +35,7 @@ class PhotosController < ApplicationController
     end
   end
 
-  before_action :ensure_current_user_is_owner
+  before_action :ensure_current_user_is_owner, only: %i[ update destroy ]
   # PATCH/PUT /photos/1 or /photos/1.json
   def update
     respond_to do |format|

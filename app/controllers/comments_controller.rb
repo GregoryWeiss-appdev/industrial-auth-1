@@ -35,7 +35,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  before_action :ensure_current_user_is_owner
+  before_action :ensure_current_user_is_owner, only: %i[ update destroy ]
   # PATCH/PUT /comments/1 or /comments/1.json
   def update
     respond_to do |format|
